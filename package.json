@@ -1,0 +1,52 @@
+{
+  "name": "mssql-mcp",
+  "version": "1.0.0",
+  "description": "Security-first, read-only MCP (Model Context Protocol) server for Microsoft SQL Server. Verifies the database user is read-only at startup and applies query-level defense in depth.",
+  "license": "MIT",
+  "author": "esasiyun17",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/esasiyun17/MSSQL-MCP.git"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "mssql-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mssql",
+    "sql-server",
+    "read-only",
+    "security",
+    "llm",
+    "claude"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "mssql": "^11.0.1",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/mssql": "^9.1.5",
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

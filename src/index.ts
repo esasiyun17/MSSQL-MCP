@@ -23,7 +23,7 @@ import { registerVerifyConnectionTool, registerQueryTools } from './tools/index.
 import { registerSecrets, toSafeMessage } from './errors.js';
 
 const SERVER_NAME = 'mssql-mcp';
-const SERVER_VERSION = '1.0.0';
+const SERVER_VERSION = '1.0.1';
 
 async function main(): Promise<void> {
   let config;

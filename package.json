@@ -1,6 +1,6 @@
 {
   "name": "@esasiyun17/mssql-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Security-first, read-only MCP (Model Context Protocol) server for Microsoft SQL Server. Verifies the database user is read-only at startup and applies query-level defense in depth.",
   "license": "MIT",
   "author": "esasiyun17",

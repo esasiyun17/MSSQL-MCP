@@ -77,7 +77,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
   if (missing.length > 0) {
     throw new ConfigError(
       `Missing required environment variables: ${missing.join(', ')}. ` +
-        'See .env.example for the full list.'
+        'Set them in the "env" block of your MCP configuration (or export them in the shell). ' +
+        'Full list & examples: https://github.com/esasiyun17/MSSQL-MCP#readme'
     );
   }
 

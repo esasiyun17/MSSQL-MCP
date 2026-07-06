@@ -1,5 +1,6 @@
 # MSSQL-MCP
 
+[![npm](https://img.shields.io/npm/v/@esasiyun17/mssql-mcp)](https://www.npmjs.com/package/@esasiyun17/mssql-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
@@ -55,15 +56,42 @@ Ek güvenlik varsayılanları: bağlantı havuzu tek ve paylaşımlıdır, kimli
 ### Kurulum
 
 ```bash
-# npx ile (önerilen)
-npx mssql-mcp
+# npx ile (önerilen) — kurulum gerektirmez, her çalıştırmada güncel sürümü kullanır
+npx -y @esasiyun17/mssql-mcp
 
-# veya kaynak koddan
+# veya kalıcı kurulum
+npm install -g @esasiyun17/mssql-mcp
+```
+
+#### Kaynak koddan kurulum (air-gap / kapalı ağ ortamları)
+
+İnternet erişimi olmayan ortamlarda `npx` çalışmaz. Repoyu klonlayıp (veya
+arşiv olarak taşıyıp) yerinde derleyin:
+
+```bash
 git clone https://github.com/esasiyun17/MSSQL-MCP.git
 cd MSSQL-MCP
 npm install
 npm run build
 ```
+
+Ardından MCP yapılandırmasında `npx` yerine doğrudan `node` + tam yol kullanın:
+
+```json
+{
+  "mcpServers": {
+    "mssql": {
+      "command": "node",
+      "args": ["/tam/yol/MSSQL-MCP/dist/index.js"],
+      "env": { "MSSQL_HOST": "...", "MSSQL_USER": "...", "MSSQL_PASSWORD": "...", "MSSQL_DATABASE": "..." }
+    }
+  }
+}
+```
+
+> İpucu: `npm install` adımı için bağımlılıkları internet erişimli bir makinede
+> indirip `node_modules` ile birlikte taşıyabilir veya `npm pack` çıktısını
+> kullanabilirsiniz.
 
 ### Salt-okunur kullanıcı oluşturma
 
@@ -88,7 +116,7 @@ ALTER ROLE [db_datareader] ADD MEMBER [mcp_reader];
   "mcpServers": {
     "mssql": {
       "command": "npx",
-      "args": ["-y", "mssql-mcp"],
+      "args": ["-y", "@esasiyun17/mssql-mcp"],
       "env": {
         "MSSQL_HOST": "192.168.1.10",
         "MSSQL_PORT": "1433",
@@ -109,7 +137,7 @@ Claude Code CLI ile:
 
 ```bash
 claude mcp add mssql -e MSSQL_HOST=192.168.1.10 -e MSSQL_USER=mcp_reader \
-  -e MSSQL_PASSWORD=YOUR_PASSWORD -e MSSQL_DATABASE=ErpDb -- npx -y mssql-mcp
+  -e MSSQL_PASSWORD=YOUR_PASSWORD -e MSSQL_DATABASE=ErpDb -- npx -y @esasiyun17/mssql-mcp
 ```
 
 ### Ortam değişkenleri
@@ -203,15 +231,42 @@ Additional safe defaults: one shared connection pool, credentials are never logg
 ### Installation
 
 ```bash
-# via npx (recommended)
-npx mssql-mcp
+# via npx (recommended) — no install step, always runs the latest version
+npx -y @esasiyun17/mssql-mcp
 
-# or from source
+# or install globally
+npm install -g @esasiyun17/mssql-mcp
+```
+
+#### Installing from source (air-gapped / offline environments)
+
+`npx` won't work without internet access. Clone the repo (or carry it over as
+an archive) and build in place:
+
+```bash
 git clone https://github.com/esasiyun17/MSSQL-MCP.git
 cd MSSQL-MCP
 npm install
 npm run build
 ```
+
+Then point your MCP configuration at `node` + the absolute path instead of `npx`:
+
+```json
+{
+  "mcpServers": {
+    "mssql": {
+      "command": "node",
+      "args": ["/absolute/path/MSSQL-MCP/dist/index.js"],
+      "env": { "MSSQL_HOST": "...", "MSSQL_USER": "...", "MSSQL_PASSWORD": "...", "MSSQL_DATABASE": "..." }
+    }
+  }
+}
+```
+
+> Tip: for the `npm install` step you can download dependencies on a machine
+> with internet access and carry the `node_modules` folder over, or use the
+> output of `npm pack`.
 
 ### Creating a read-only user
 
@@ -235,7 +290,7 @@ ALTER ROLE [db_datareader] ADD MEMBER [mcp_reader];
   "mcpServers": {
     "mssql": {
       "command": "npx",
-      "args": ["-y", "mssql-mcp"],
+      "args": ["-y", "@esasiyun17/mssql-mcp"],
       "env": {
         "MSSQL_HOST": "192.168.1.10",
         "MSSQL_PORT": "1433",
@@ -256,7 +311,7 @@ With the Claude Code CLI:
 
 ```bash
 claude mcp add mssql -e MSSQL_HOST=192.168.1.10 -e MSSQL_USER=mcp_reader \
-  -e MSSQL_PASSWORD=YOUR_PASSWORD -e MSSQL_DATABASE=ErpDb -- npx -y mssql-mcp
+  -e MSSQL_PASSWORD=YOUR_PASSWORD -e MSSQL_DATABASE=ErpDb -- npx -y @esasiyun17/mssql-mcp
 ```
 
 ### Environment variables
